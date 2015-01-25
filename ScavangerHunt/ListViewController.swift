@@ -8,10 +8,35 @@
 
 import UIKit
 
-class ListViewController: UITableViewController {
+class ListViewController: UITableViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var scavengerHuntItems = [ScavengerHuntItem(name: "Bird") ,
                                                  ScavengerHuntItem(name:"Goat") ,
                                                  ScavengerHuntItem(name: "Horse")]
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            imagePicker.sourceType = .Camera
+        } else {
+            imagePicker.sourceType = .PhotoLibrary
+        }
+        imagePicker.delegate = self
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let indexPath = tableView.indexPathForSelectedRow() {
+            let photo = info[UIImagePickerControllerOriginalImage] as UIImage
+            let selectedItem = scavengerHuntItems[indexPath.row]
+            selectedItem.photo = photo
+            dismissViewControllerAnimated(true, completion: {
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                })
+        }
+    }
+    
+    
+    
     override func tableView(taleView: UITableView, numberOfRowsInSection section: Int) ->Int {
         return scavengerHuntItems.count;
     }
@@ -20,6 +45,13 @@ class ListViewController: UITableViewController {
         
         let item = scavengerHuntItems[indexPath.row]
         cell.textLabel!.text = item.name
+        if item.isComplete {
+            cell.imageView!.image = item.photo
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.imageView!.image = nil
+            cell.accessoryType = .None
+        }
         return cell
     }
     
