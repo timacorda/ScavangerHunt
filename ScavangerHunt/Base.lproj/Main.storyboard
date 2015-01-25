@@ -36,10 +36,19 @@
                                 <action selector="cancel:" destination="BYZ-38-t0r" id="ear-If-pep"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="v8T-Ai-oKx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="v8T-Ai-oKx">
+                            <connections>
+                                <segue destination="hSV-HZ-wtV" kind="unwind" identifier="DoneItem" unwindAction="unwindToList:" id="7Ku-3Y-wGE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="v8T-Ai-oKx" id="2Ti-M3-tLB"/>
+                        <outlet property="textField" destination="KsV-Bf-px0" id="YyO-Yl-sie"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="hSV-HZ-wtV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3236" y="716"/>
         </scene>

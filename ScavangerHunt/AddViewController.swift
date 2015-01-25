@@ -10,6 +10,11 @@ import UIKit
 
 class AddViewController: UIViewController {
 
+    var newItem: ScavengerHuntItem?
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +27,16 @@ class AddViewController: UIViewController {
 
     @IBAction func cancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "DoneItem" {
+            if let name = textField.text {
+                if !name.isEmpty {
+                    newItem = ScavengerHuntItem(name: name)
+                }
+            }
+        }
     }
 
 }

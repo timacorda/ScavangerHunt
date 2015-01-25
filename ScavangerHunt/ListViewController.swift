@@ -22,4 +22,16 @@ class ListViewController: UITableViewController {
         cell.textLabel!.text = item.name
         return cell
     }
+    
+    @IBAction func unwindToList(segue: UIStoryboardSegue) {
+        if segue.identifier == "DoneItem" {
+            let addItemController = segue.sourceViewController as AddViewController
+            if let newItem = addItemController.newItem {
+                scavengerHuntItems += [newItem]
+                let indexPath = NSIndexPath(forRow: scavengerHuntItems.count-1 , inSection: 0)
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+        }
+    }
+    
 }
