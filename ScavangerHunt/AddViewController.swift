@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
-class AddViewController: UIViewController {
-
+class AddViewController: UIViewController, CLLocationManagerDelegate {
+    var locationer = CLLocationManager()
     var newItem: ScavengerHuntItem?
     
+    @IBOutlet weak var locationText: UILabel!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     
@@ -29,7 +31,15 @@ class AddViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    @IBAction func findMeGPS(sender: AnyObject) {
+        locationer.delegate = self
+        locationer.desiredAccuracy = kCLLocationAccuracyBest
+        locationer.startUpdatingLocation()
+    }
+    
+
+    
+       override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DoneItem" {
             if let name = textField.text {
                 if !name.isEmpty {

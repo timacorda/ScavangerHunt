@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Add View Controller-->
+        <!--Add an Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="AddViewController" customModule="ScavangerHunt" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,15 +22,42 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpi-ts-qYA">
+                                <rect key="frame" x="195" y="466" width="210" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="Uld-9I-4xR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMa-Rx-9AJ">
+                                <rect key="frame" x="247" y="244" width="106" height="32"/>
+                                <color key="backgroundColor" red="0.51588147095959602" green="0.51588147095959602" blue="0.51588147095959602" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="4Ga-mv-LpZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Location!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findMeGPS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Ak-mF-kzU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KsV-Bf-px0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Lfk-Uq-ebQ"/>
+                            <constraint firstItem="oMa-Rx-9AJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="244" id="b5l-gm-pL3"/>
+                            <constraint firstItem="Bpi-ts-qYA" firstAttribute="centerX" secondItem="oMa-Rx-9AJ" secondAttribute="centerX" id="dlr-bg-OfF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bpi-ts-qYA" secondAttribute="bottom" constant="113" id="jXQ-P7-xLx"/>
+                            <constraint firstItem="oMa-Rx-9AJ" firstAttribute="centerX" secondItem="KsV-Bf-px0" secondAttribute="centerX" id="lZW-ic-4v1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KsV-Bf-px0" secondAttribute="trailing" constant="20" id="pAY-oh-J6S"/>
                             <constraint firstItem="KsV-Bf-px0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yRq-1A-lxM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="PFb-eA-vwD">
+                    <navigationItem key="navigationItem" title="Add an Item" id="PFb-eA-vwD">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fmA-xY-9cV">
                             <connections>
                                 <action selector="cancel:" destination="BYZ-38-t0r" id="ear-If-pep"/>
@@ -44,15 +71,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="v8T-Ai-oKx" id="2Ti-M3-tLB"/>
+                        <outlet property="locationText" destination="Bpi-ts-qYA" id="6HX-Qi-YgJ"/>
                         <outlet property="textField" destination="KsV-Bf-px0" id="YyO-Yl-sie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="hSV-HZ-wtV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3236" y="716"/>
+            <point key="canvasLocation" x="3118" y="756"/>
         </scene>
-        <!--List View Controller-->
+        <!--Scavenger Hunt Items-->
         <scene sceneID="CVC-Nb-VcH">
             <objects>
                 <tableViewController id="bU2-6T-CiT" customClass="ListViewController" customModule="ScavangerHunt" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,7 +109,7 @@
                             <outlet property="delegate" destination="bU2-6T-CiT" id="GtF-08-dDD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bcl-da-gHA">
+                    <navigationItem key="navigationItem" title="Scavenger Hunt Items" id="bcl-da-gHA">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Aox-W9-9m1">
                             <connections>
                                 <segue destination="i1p-Cx-ui7" kind="presentation" identifier="" id="QNK-pv-enu"/>
@@ -91,7 +119,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezs-iU-B5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2574" y="364"/>
+            <point key="canvasLocation" x="2478" y="364"/>
         </scene>
         <!--List Nav Controller-->
         <scene sceneID="mR3-nn-eI8">
@@ -127,7 +155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wr4-t4-cLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3236" y="4"/>
+            <point key="canvasLocation" x="3118" y="-6"/>
         </scene>
     </scenes>
 </document>
